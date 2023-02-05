@@ -21,32 +21,26 @@ class HomePage extends StatelessWidget {
     final NumberFormat formatter = NumberFormat.simpleCurrency(
         locale: Localizations.localeOf(context).toString());
     return Card(
+      elevation: 0,
         clipBehavior: Clip.antiAlias,
-        child: ListView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: <Widget>[
             AspectRatio(
-                aspectRatio: 18 / 11, 
-                child: Image.asset(
-                  product.assetName, 
-                  package: product.assetPackage,
-                  fit: BoxFit.fitWidth
-                )
-              ),
+                aspectRatio: 18 / 11,
+                child: Image.asset(product.assetName,
+                    package: product.assetPackage, fit: BoxFit.fitWidth)),
             Padding(
                 padding: const EdgeInsets.all(8),
                 child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
-                      Text(
-                        product.name,
-                        style: theme.textTheme.headline6,
-                        maxLines: 1
-                      ),
+                      Text(product.name,
+                          style: theme.textTheme.button, maxLines: 1),
                       const SizedBox(height: 10),
-                      Text(
-                        formatter.format(product.price),
-                        style: theme.textTheme.subtitle2
-                      )
+                      Text(formatter.format(product.price),
+                          style: theme.textTheme.caption)
                     ]))
           ],
         ));
@@ -87,10 +81,9 @@ class HomePage extends StatelessWidget {
       body: GridView.count(
         crossAxisCount: 2,
         padding: const EdgeInsets.all(8),
-        childAspectRatio: 8 / 9,
+        //childAspectRatio: 8 / 9,
         children: _buildGridCards(context),
       ),
-      resizeToAvoidBottomInset: false,
       // TODO: Set resizeToAvoidBottomInset (101)
     );
   }

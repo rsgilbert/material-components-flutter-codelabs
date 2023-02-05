@@ -1,21 +1,49 @@
-// Copyright 2018-present the Flutter authors. All Rights Reserved.
-//
-// Licensed under the Apache License, Version 2.0 (the "License");
-// you may not use this file except in compliance with the License.
-// You may obtain a copy of the License at
-//
-// http://www.apache.org/licenses/LICENSE-2.0
-//
-// Unless required by applicable law or agreed to in writing, software
-// distributed under the License is distributed on an "AS IS" BASIS,
-// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
-// See the License for the specific language governing permissions and
-// limitations under the License.
-
 import 'package:flutter/material.dart';
+import 'package:shrine/colors.dart';
 
 import 'home.dart';
 import 'login.dart';
+
+ThemeData _buildShrineTheme() {
+  final ThemeData base = ThemeData.light();
+  return base.copyWith(
+    colorScheme: base.colorScheme.copyWith(
+      primary: kShrinePink100,
+      onPrimary: kShrineBrown900,
+      secondary: kShrineBrown900,
+      error: kShrineErrorRed
+    ),
+    textTheme: _buildShrineTextTheme(base.textTheme),
+    textSelectionTheme: const TextSelectionThemeData(selectionColor: kShrinePink100),
+    inputDecorationTheme: const InputDecorationTheme(
+      border: OutlineInputBorder(),
+      focusedBorder: OutlineInputBorder(
+        borderSide: BorderSide(
+          width: 2,
+          color: kShrineBrown900
+        )
+      ),
+      floatingLabelStyle: TextStyle(
+        color: kShrineBrown900
+      )
+    )
+  );
+}
+
+
+TextTheme _buildShrineTextTheme(TextTheme base) {
+  return base.copyWith(
+    headline5: base.headline5!.copyWith(
+      fontWeight: FontWeight.w500
+    )
+  ) .apply(
+      fontFamily: 'Rubik',
+      bodyColor: kShrineBrown900,
+      displayColor: kShrineBrown900
+    );
+}
+
+final ThemeData kShrineTheme = _buildShrineTheme();
 
 // TODO: Convert ShrineApp to stateful widget (104)
 class ShrineApp extends StatelessWidget {
@@ -25,7 +53,7 @@ class ShrineApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      initialRoute: '/',
+      initialRoute: '/login',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
         // TODO: Change to a Backdrop with a HomePage frontLayer (104)
@@ -34,7 +62,7 @@ class ShrineApp extends StatelessWidget {
         // TODO: Pass _currentCategory for frontLayer (104)
         // TODO: Change backLayer field value to CategoryMenuPage (104)
       },
-      // TODO: Add a theme (103)
+      theme: kShrineTheme
     );
   }
 }

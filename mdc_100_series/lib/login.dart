@@ -76,7 +76,6 @@ class _LoginPageState extends State<LoginPage> {
               spacing:10
               )
               // TODO: Remove filled: true values (103)
-            // TODO: Add button bar (101)
           ],
         ),
       ),

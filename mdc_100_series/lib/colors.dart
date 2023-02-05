@@ -13,3 +13,7 @@ const kShrineErrorRed = Color(0xFFC5032B);
 const kShrineSurfaceWhite = Color(0xFFFFFBFA);
 const kShrineBackgroundWhite = Colors.white;
 
+
+// purple 
+const kShrinePurple = Color(0xFF5D1049);
+const kShrinePurpleLight = Color.fromARGB(255, 144, 106, 115);

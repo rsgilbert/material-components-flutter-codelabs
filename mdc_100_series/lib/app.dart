@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:shrine/backdrop.dart';
 import 'package:shrine/colors.dart';
+import 'package:shrine/model/product.dart';
 import 'package:shrine/supplemental/cut_corners_border.dart';
 
 import 'home.dart';
@@ -9,12 +11,13 @@ ThemeData _buildShrineTheme() {
   final ThemeData base = ThemeData.light();
   return base.copyWith(
     colorScheme: base.colorScheme.copyWith(
-      primary: kShrinePink100,
-      onPrimary: kShrineBrown900,
-      secondary: kShrineBrown900,
+      primary: kShrinePurple,
+      // onPrimary: kShrineBrown900,
+      secondary: kShrinePurple,
       error: kShrineErrorRed
     ),
     textTheme: _buildShrineTextTheme(base.textTheme),
+    scaffoldBackgroundColor: kShrinePurpleLight,
     textSelectionTheme: const TextSelectionThemeData(selectionColor: kShrinePink100),
     inputDecorationTheme: const InputDecorationTheme(
       border: CutCornersBorder(),
@@ -39,8 +42,8 @@ TextTheme _buildShrineTextTheme(TextTheme base) {
     )
   ) .apply(
       fontFamily: 'Rubik',
-      bodyColor: kShrineBrown900,
-      displayColor: kShrineBrown900
+      bodyColor: kShrinePurple,
+      displayColor: kShrinePurple
     );
 }
 
@@ -54,11 +57,16 @@ class ShrineApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Shrine',
-      initialRoute: '/login',
+      initialRoute: '/',
       routes: {
         '/login': (BuildContext context) => const LoginPage(),
         // TODO: Change to a Backdrop with a HomePage frontLayer (104)
-        '/': (BuildContext context) => const HomePage(),
+        '/': (BuildContext context) => Backdrop(
+          currentCategory: Category.all,
+          frontLayer: HomePage(), 
+          backLayer: Container(color: kShrinePurple), 
+          frontTitle: Text("SHRINE"), 
+          backTitle: Text("MENU"))
         // TODO: Make currentCategory field take _currentCategory (104)
         // TODO: Pass _currentCategory for frontLayer (104)
         // TODO: Change backLayer field value to CategoryMenuPage (104)

@@ -23,25 +23,22 @@ class HomePage extends StatelessWidget {
     return Card(
       elevation: 0,
         clipBehavior: Clip.antiAlias,
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+        child: ListView(
           children: <Widget>[
             AspectRatio(
                 aspectRatio: 18 / 11,
                 child: Image.asset(product.assetName,
                     package: product.assetPackage, fit: BoxFit.fitWidth)),
-            Padding(
-                padding: const EdgeInsets.all(8),
-                child: Column(
+            const SizedBox(height: 8),
+            Column(
                     crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.end,
                     children: <Widget>[
                       Text(product.name,
                           style: theme.textTheme.button, maxLines: 1),
-                      const SizedBox(height: 10),
+                      const SizedBox(height: 4),
                       Text(formatter.format(product.price),
                           style: theme.textTheme.caption)
-                    ]))
+                    ])
           ],
         ));
   }
@@ -52,39 +49,11 @@ class HomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     // TODO: Return an AsymmetricView (104)
     // TODO: Pass Category variable to AsymmetricView (104)
-    return Scaffold(
-      appBar: AppBar(
-        leading: IconButton(
-          icon: const Icon(
-            Icons.menu,
-            semanticLabel: 'Menu',
-          ),
-          onPressed: () {
-            print("Menu buton");
-          },
-        ),
-        title: const Text("SHRINE"),
-        actions: [
-          IconButton(
-              onPressed: () {
-                print("Searching");
-              },
-              icon: const Icon(Icons.search, semanticLabel: "Search")),
-          IconButton(
-              onPressed: () {
-                print("Filtering");
-              },
-              icon: const Icon(Icons.filter_alt_sharp, semanticLabel: "Filter"))
-        ],
-      ),
-      // TODO: Add a grid view (102)
-      body: GridView.count(
+    return GridView.count(
         crossAxisCount: 2,
         padding: const EdgeInsets.all(8),
-        //childAspectRatio: 8 / 9,
+        childAspectRatio: 8 / 7,
         children: _buildGridCards(context),
-      ),
-      // TODO: Set resizeToAvoidBottomInset (101)
-    );
+      );
   }
 }

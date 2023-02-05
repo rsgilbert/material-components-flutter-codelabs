@@ -39,12 +39,51 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
             const SizedBox(height: 120.0),
-            // TODO: Remove filled: true values (103)
-            // TODO: Add TextField widgets (101)
+            TextField(
+              controller: _usernameController,
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.amber[100],
+                  labelText: "Username"),
+            ),
+            const SizedBox(height: 12),
+            TextField(
+              controller: _passwordController,
+              decoration: InputDecoration(
+                  filled: true,
+                  fillColor: Colors.amber[100],
+                  labelText: "Password"),
+              obscureText: true,
+            ),
+            const SizedBox(height: 12),
+            OverflowBar(
+              children: [
+                TextButton(
+                  child: const Text("CANCEL"),
+                  onPressed: (){
+                    _usernameController.clear();
+                    _passwordController.clear();
+                  }
+                ),
+                ElevatedButton(
+                  child: const Text("NEXT"),
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                )
+              ],
+              alignment: MainAxisAlignment.end,
+              spacing:10
+              )
+              // TODO: Remove filled: true values (103)
             // TODO: Add button bar (101)
           ],
         ),
       ),
     );
   }
+
+
+  final _usernameController = TextEditingController();
+  final _passwordController = TextEditingController();
 }

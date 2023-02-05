@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:shrine/supplemental/cut_corners_border.dart';
 
 class LoginPage extends StatefulWidget {
   const LoginPage({Key? key}) : super(key: key);
@@ -44,13 +45,17 @@ class _LoginPageState extends State<LoginPage> {
                   },
                   style: TextButton.styleFrom(
                       foregroundColor:
-                          Theme.of(context).colorScheme.secondary)),
+                          Theme.of(context).colorScheme.secondary,
+                      shape: const BeveledRectangleBorder())),
               ElevatedButton(
                 child: const Text("NEXT"),
                 onPressed: () {
                   Navigator.pop(context);
                 },
-                style: ElevatedButton.styleFrom(elevation: 8),
+                style: ElevatedButton.styleFrom(
+                  elevation: 0,
+                  shape: BeveledRectangleBorder()
+                ),
               )
             ], alignment: MainAxisAlignment.end, spacing: 10)
             // TODO: Remove filled: true values (103)

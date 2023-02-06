@@ -4,10 +4,14 @@ import 'package:shrine/model/product.dart';
 import 'package:shrine/model/products_repository.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+  final Category currentCategory;
+  const HomePage({
+    Key? key,
+    required this.currentCategory
+    }) : super(key: key);
 
   List<Card> _buildGridCards(BuildContext context) {
-    List<Product> products = ProductsRepository.loadProducts(Category.all);
+    List<Product> products = ProductsRepository.loadProducts(currentCategory);
     if (products.isEmpty) {
       return [];
     }

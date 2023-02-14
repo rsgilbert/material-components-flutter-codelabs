@@ -99,9 +99,10 @@ class _BackdropState extends State<Backdrop>
       elevation: 0,
       titleSpacing: 0,
       leading: IconButton(
-        icon: const Icon(Icons.menu),
+        icon: const ImageIcon(AssetImage('assets/diamond.png')),
         onPressed: _toggleBackdropLayerVisibility,
       ),
+      title: const Text("SHRINE", style: TextStyle(color: Colors.white))
     );
     return Scaffold(
       appBar: appBar,
